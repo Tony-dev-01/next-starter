@@ -11,8 +11,6 @@ export default function Services () {
     const [fadeState, setFadeState] = useState('visible'); // 'visible' or 'hidden'
     const [displayedImageUrl, setDisplayedImageUrl] = useState(null);
 
-    console.log(service01)
-
     const serviceItems = [
         {
             id: 0,
@@ -81,11 +79,7 @@ export default function Services () {
                 <div className="flex gap-10 flex-wrap flex-row justify-evenly w-full">
                 <div className={` flex flex-wrap justify-center transition-opacity duration-300 ${fadeState === 'visible' ? 'opacity-100' : 'opacity-0'}`}>
                     <div className="h-72 min-w-72 flex justify-center items-center">
-                        {console.log(displayedImageUrl)}
-                        <Image src={displayedImageUrl} 
-                                    alt={`Service ${activeService + 1}`} 
-                                    className="h-full max-w-sm w-auto"
-                                    />
+                        <Image src={displayedImageUrl} alt={`Service ${activeService + 1}`} className="h-full max-w-sm w-auto"/>
                         </div>
                     </div>
                     <div className="flex">

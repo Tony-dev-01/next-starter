@@ -3,6 +3,7 @@ import ThemeToggleButton from "./ThemeToggleButton";
 import SignButton from "./SignButton";
 
 
+
 export default function Header () {
 
     return(
@@ -28,7 +29,7 @@ export default function Header () {
                         <li><a>Item 3</a></li>
                     </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">daisyUI</a>
+                    <Link className="btn btn-ghost text-xl" href="/">daisyUI</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -47,7 +48,7 @@ export default function Header () {
                 </div>
                 <div className="navbar-end">
                     <ThemeToggleButton />
-                    {/* <SignButton /> */}
+                    <SignButton />
                 </div>
                 </div>
             </div>

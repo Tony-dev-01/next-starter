@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "better-auth": "^1.2.12",
     "daisyui": "^5.0.43",
+    "dotenv": "^17.0.1",
     "next": "15.3.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

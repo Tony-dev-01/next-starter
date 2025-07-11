@@ -58,7 +58,7 @@ export default function PricingTable () {
                         <ul className="mt-6 flex flex-col gap-2 text-xs">
                             {pack.features.map((feature) => {
                                 return (
-                                    <>
+                                    <div>
                                         {feature.isIncluded ?
                                         <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" className="size-4 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
@@ -66,7 +66,7 @@ export default function PricingTable () {
                                         <li className="opacity-50">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="size-4 me-2 inline-block text-base-content/50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
                                         <span className="line-through">{feature.name}</span></li>}
-                                    </>
+                                    </div>
                                 )
                             })}
                         </ul>
