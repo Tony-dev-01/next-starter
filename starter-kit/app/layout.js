@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import AuthProvider from "./providers/AuthProvider";
 
 export const metadata = {
   title: "Next Starter Kit",
@@ -12,9 +13,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <AuthProvider>
+          <Header />
+          {children}
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

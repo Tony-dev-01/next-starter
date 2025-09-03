@@ -1,37 +1,45 @@
 "use client"
 import { useRouter } from "next/navigation";
-import { authClient } from "../../lib/auth-client";
+import { useAuth } from "../providers/AuthProvider";
+import WithAuth from "../../components/auth/WithAuth";
 
-
-export default function Dashboard () {
-    const {data:session} = authClient.useSession();
+function DashboardContent() {
+    const { session, signOut } = useAuth();
     const router = useRouter();
-
-    console.log(session)
 
     const handleSignOut = async () => {
         console.log('Signing out...');
-        await authClient.signOut({
+        await signOut({
             fetchOptions: {
                 onSuccess: () => {
-                router.push("/"); // redirect to login page
+                    router.push("/"); // redirect to login page
                 },
             },
         });
     }
 
-    const handleSignIn = async () => {
-        await authClient.signIn.social({
-            provider: "github", 
-        })
-    }
+    return (
+        <div className="container mx-auto px-4 py-8">
+            <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
+            <div className="card bg-base-200 shadow-xl">
+                <div className="card-body">
+                    <h2 className="card-title">Welcome back!</h2>
+                    <p>Hello, {session?.user?.name || session?.user?.email}</p>
+                    <div className="card-actions justify-end">
+                        <button className="btn btn-primary" onClick={handleSignOut}>
+                            Sign out
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
 
-    return(
-        <>
-        <h1>Dashboard</h1>
-        <p>Welcome, {session?.user.name}</p>
-        {session ?
-        <button className="btn btn-primary" onClick={handleSignOut}>Sign out</button> : <button className="btn btn-primary" onClick={handleSignIn}>Sign out</button>}
-        </>
-    )
+export default function Dashboard() {
+    return (
+        <WithAuth>
+            <DashboardContent />
+        </WithAuth>
+    );
 }

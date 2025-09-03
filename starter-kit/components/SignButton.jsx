@@ -22,7 +22,7 @@ export default function SignButton () {
         <div>
         {!session?.session ? 
         <Link className="btn" href={'/sign-in'}>Login</Link> :
-        <button className="btn" onClick={handleSignOut}>Logout</button>
+        <button className="btn" onClick={handleSignOut}>Sign out</button>
         }
         </div>
     )   
