@@ -46,7 +46,10 @@ export default function Header () {
                     <li><a>Item 3</a></li>
                     </ul>
                 </div>
-                <div className="navbar-end">
+                <div className="navbar-end" >
+                    <Link className="btn btn-primary" href={'/checkout'}>
+                    Cart
+                    </Link>
                     <ThemeToggleButton />
                     <SignButton />
                 </div>

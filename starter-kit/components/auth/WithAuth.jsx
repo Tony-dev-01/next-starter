@@ -7,10 +7,18 @@ import { useEffect } from 'react';
 export default function WithAuth({ 
   children, 
   fallback = null, 
-  redirectTo = '/sign-in' 
+  redirectTo = '/sign-in',
+  requiredRole = null 
 }) {
   const { session, isLoading, isAuthenticated } = useAuth();
   const router = useRouter();
+
+  // Check if user has required role
+  const hasRequiredRole = () => {
+    if (!requiredRole) return true;
+    if (!session?.user) return false;
+    return session.user.role === requiredRole;
+  };
 
   useEffect(() => {
     // Clean up URL parameters after successful authentication
@@ -38,7 +46,12 @@ export default function WithAuth({
       const redirectUrl = `${redirectTo}?redirectTo=${encodeURIComponent(currentPath)}`;
       router.push(redirectUrl);
     }
-  }, [isLoading, isAuthenticated, router, redirectTo]);
+
+    // If authenticated but doesn't have required role, redirect to unauthorized page
+    if (!isLoading && isAuthenticated && requiredRole && !hasRequiredRole()) {
+      router.push('/unauthorized');
+    }
+  }, [isLoading, isAuthenticated, router, redirectTo, requiredRole, session]);
 
   // Show loading spinner while checking authentication
   if (isLoading) {
@@ -68,7 +81,21 @@ export default function WithAuth({
     );
   }
 
-  // User is authenticated, render the protected content
+  // Don't render children if user doesn't have required role (will redirect)
+  if (requiredRole && !hasRequiredRole()) {
+    return (
+      fallback || (
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="flex flex-col items-center gap-4">
+            <div className="loading loading-spinner loading-lg"></div>
+            <p className="text-base-content/70">Checking permissions...</p>
+          </div>
+        </div>
+      )
+    );
+  }
+
+  // User is authenticated and has required role, render the protected content
   return <>{children}</>;
 }
 
@@ -86,4 +113,20 @@ export function withAuth(WrappedComponent, options = {}) {
 
   WithAuthComponent.displayName = `withAuth(${displayName})`;
   return WithAuthComponent;
+}
+
+// HOC version for role-based authentication
+export function withRole(WrappedComponent, requiredRole, options = {}) {
+  const displayName = WrappedComponent.displayName || WrappedComponent.name || 'Component';
+  
+  const WithRoleComponent = (props) => {
+    return (
+      <WithAuth requiredRole={requiredRole} {...options}>
+        <WrappedComponent {...props} />
+      </WithAuth>
+    );
+  };
+
+  WithRoleComponent.displayName = `withRole(${displayName})`;
+  return WithRoleComponent;
 }

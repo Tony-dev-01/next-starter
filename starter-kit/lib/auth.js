@@ -3,6 +3,9 @@ import { authClient } from "./auth-client";
 import { betterAuth } from "better-auth";
 import { admin } from "better-auth/plugins";
 
+import { stripe } from "@better-auth/stripe";
+import Stripe from "stripe";
+
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { db } from "./db";
 
@@ -23,6 +26,10 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
     "Please define the GOOGLE_CLIENT_ID or GOOGLE_CLIENT_SECRET environment variable inside .env.local"
   );
 }
+
+const stripeClient = new Stripe(process.env.STRIPE_SECRET_KEY, {
+  apiVersion: "2025-02-24.acacia",
+});
 
 export const auth = betterAuth({
   baseURL: process.env.BETTER_AUTH_URL || "http://localhost:3000",
@@ -46,7 +53,18 @@ export const auth = betterAuth({
       }/api/auth/callback/google`,
     },
   },
-  plugins: [admin()],
+  plugins: [
+    admin(),
+    stripe({
+      stripeClient,
+      stripeWebhookSecret: process.env.STRIPE_WEBHOOK_SECRET,
+      createCustomerOnSignUp: true,
+      subscription: {
+        //if you want to enable subscription management
+        enabled: false,
+      },
+    }),
+  ],
   secret: process.env.BETTER_AUTH_SECRET,
   trustedOrigins: [
     process.env.BETTER_AUTH_URL || "http://localhost:3000",
