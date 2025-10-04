@@ -53,7 +53,7 @@ cd next-starter
 2. Install dependencies:
 ```bash
 cd starter-kit
-npm install
+yarn install
 ```
 
 3. Set up environment variables:
@@ -80,7 +80,7 @@ The `.env.example` file is safe to commit as it contains no actual secrets - onl
 
 4. Start the development server:
 ```bash
-npm run dev
+yarn dev
 ```
 
 Visit [http://localhost:3000](http://localhost:3000) to see your application.
@@ -143,10 +143,10 @@ starter-kit/
 
 ### Available Scripts
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
+- `yarn dev` - Start development server
+- `yarn build` - Build for production
+- `yarn start` - Start production server
+- `yarn lint` - Run ESLint
 
 ### Adding New Pages
 
