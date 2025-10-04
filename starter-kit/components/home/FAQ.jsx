@@ -1,9 +1,4 @@
-'use client'
-import { useState } from "react";
-
 export default function FAQ () {
-    const [activeService, setActiveService] = useState(1); // the id of highlighted service
-
     const questions = [
         {
             id: 1,
@@ -22,10 +17,6 @@ export default function FAQ () {
         },
     ];
 
-    const handleServiceChange = (itemId) => {
-        setActiveService(itemId);
-    };
-
     return(
         <section className="py-10 md:py-16">
             <div className="container">
@@ -37,10 +28,10 @@ export default function FAQ () {
                     <ul className="basis-1/2 flex flex-col gap-2">
                         {questions.map((question, index) => {
                             return(
-                                <div className="collapse collapse-plus bg-base-100 border border-base-300">
-                                    <input type="radio" name="my-accordion-3"onChange={() => handleServiceChange(question.id)}  defaultChecked={index === 0} />
-                                        <div className={`collapse-title font-semibold ${activeService === question.id ? 'text-primary bg-base-200' : ''}`}>{question.name}</div>
-                                        <div className={`collapse-content text-sm ${activeService === question.id ? 'bg-base-200' : ''}`}>{question.content}</div>
+                                <div key={question.id} className="collapse collapse-plus bg-base-100 border border-base-300 has-[:checked]:bg-base-200 has-[:checked]:[&_.collapse-title]:text-primary">
+                                    <input type="radio" name="my-accordion-3" defaultChecked={index === 0} />
+                                        <div className="collapse-title font-semibold">{question.name}</div>
+                                        <div className="collapse-content text-sm">{question.content}</div>
                                 </div>
                             )
                         })}

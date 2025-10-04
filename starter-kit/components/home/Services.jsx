@@ -79,7 +79,9 @@ export default function Services () {
                 <div className="flex gap-10 flex-wrap flex-row justify-evenly w-full">
                 <div className={` flex flex-wrap justify-center transition-opacity duration-300 ${fadeState === 'visible' ? 'opacity-100' : 'opacity-0'}`}>
                     <div className="h-72 min-w-72 flex justify-center items-center">
-                        <Image src={displayedImageUrl} alt={`Service ${activeService + 1}`} className="h-full max-w-sm w-auto"/>
+                        {displayedImageUrl && (
+                            <Image src={displayedImageUrl} alt={`Service ${activeService + 1}`} className="h-full max-w-sm w-auto"/>
+                        )}
                         </div>
                     </div>
                     <div className="flex">
