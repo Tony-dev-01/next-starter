@@ -52,13 +52,11 @@ cd next-starter
 
 2. Install dependencies:
 ```bash
-cd starter-kit
 yarn install
 ```
 
 3. Set up environment variables:
 ```bash
-cd starter-kit
 cp .env.example .env.local
 ```
 
@@ -120,7 +118,7 @@ Visit [http://localhost:3000](http://localhost:3000) to see your application.
 ## Project Structure
 
 ```
-starter-kit/
+next-starter/
 ├── app/                    # Next.js app directory
 │   ├── api/               # API routes
 │   │   ├── auth/         # Better-auth endpoints
