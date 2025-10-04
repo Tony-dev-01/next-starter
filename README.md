@@ -58,32 +58,25 @@ npm install
 
 3. Set up environment variables:
 ```bash
+cd starter-kit
 cp .env.example .env.local
 ```
 
-Fill in your environment variables in `.env.local`:
+Fill in your actual values in `.env.local` using the provided `.env.example` template as a reference.
 
-```env
-# Better Auth Configuration
-BETTER_AUTH_SECRET=your-secret-key-here
-BETTER_AUTH_URL=http://localhost:3000
+**🔒 Important Security Setup:**
 
-# Database
-MONGO_URI=mongodb://localhost:27017/your-database
-MONGO_DB=starter-kit-example
+Before adding your secrets, ensure your `.gitignore` file includes these lines to prevent accidentally committing sensitive data:
 
-# GitHub OAuth
-GITHUB_CLIENT_ID=your-github-client-id
-GITHUB_CLIENT_SECRET=your-github-client-secret
-
-# Google OAuth  
-GOOGLE_CLIENT_ID=your-google-client-id
-GOOGLE_CLIENT_SECRET=your-google-client-secret
-
-# Stripe
-STRIPE_SECRET_KEY=sk_test_...
-STRIPE_WEBHOOK_SECRET=whsec_...
+```gitignore
+# Environment files with secrets
+.env
+.env*.local
+.env.production
+.env.development
 ```
+
+The `.env.example` file is safe to commit as it contains no actual secrets - only placeholder values and helpful comments.
 
 4. Start the development server:
 ```bash
