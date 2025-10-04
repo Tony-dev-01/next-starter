@@ -1,6 +1,6 @@
 # Next.js Starter Kit
 
-A modern, full-stack boilerplate for building web applications with Next.js, MongoDB, DaisyUI, and Better-auth for authentication.
+A modern, full-stack boilerplate for building web applications with Next.js, TailwindCSS, DaisyUI, MongoDB and Better-auth for authentication.
 
 ## Tech Stack
 
