@@ -48,7 +48,7 @@ A modern, full-stack boilerplate for building web applications with Next.js, Mon
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - MongoDB database
 - Google OAuth App (for social login)
 - Stripe account (for payments)
@@ -57,17 +57,20 @@ A modern, full-stack boilerplate for building web applications with Next.js, Mon
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <your-repo-url>
 cd next-starter
 ```
 
 2. Install dependencies:
+
 ```bash
 yarn install
 ```
 
 3. Set up environment variables:
+
 ```bash
 cp .env.example .env.local
 ```
@@ -89,6 +92,7 @@ Before adding your secrets, ensure your `.gitignore` file includes these lines t
 The `.env.example` file is safe to commit as it contains no actual secrets - only placeholder values and helpful comments.
 
 4. Start the development server:
+
 ```bash
 yarn dev
 ```
@@ -106,6 +110,7 @@ Visit [http://localhost:3000](http://localhost:3000) to see your application.
 ### Authentication Setup
 
 #### GitHub OAuth:
+
 1. Go to GitHub Settings > Developer settings > OAuth Apps
 2. Create a new OAuth App with:
    - Homepage URL: `http://localhost:3000`
@@ -113,6 +118,7 @@ Visit [http://localhost:3000](http://localhost:3000) to see your application.
 3. Copy Client ID and Client Secret to your `.env.local`
 
 #### Google OAuth:
+
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
 2. Create a new project or select existing one
 3. Enable Google+ API
@@ -177,6 +183,7 @@ next-starter/
 ### Customizing Authentication
 
 Edit `lib/auth.js` to:
+
 - Add new social providers
 - Configure session settings
 - Enable/disable features
@@ -192,12 +199,14 @@ Edit `lib/auth.js` to:
 DaisyUI configuration is handled in `app/globals.css`. To customize themes and colors:
 
 1. **Change default theme**: Add theme configuration to `globals.css`:
+
 ```css
 @import "tailwindcss";
 @plugin "daisyui" theme(dark);
 ```
 
 2. **Custom color palette**: Define custom CSS variables in `globals.css`:
+
 ```css
 :root {
   --color-primary: your-color-here;
@@ -206,6 +215,7 @@ DaisyUI configuration is handled in `app/globals.css`. To customize themes and c
 ```
 
 3. **Multiple themes**: Configure theme switching:
+
 ```css
 @plugin "daisyui" theme(light dark cupcake);
 ```
