@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "features": "Fonctionnalitées",
+    "pricing": "Plans",
+    "contact": "Contact",
+    "sign_in": "Se connecter",
+    "sign_up": "S'inscrire",
+    "sign_out": "Se déconnecter"
+  },
+  "home": {
+    "title": "Bienvenue dans notre logiciel de paie",
+    "subtitle": "Gérez votre paie efficacement et en toute sécurité",
+    "get_started": "Commencer",
+    "learn_more": "En savoir plus"
+  },
+  "auth": {
+    "sign_in_title": "Connectez-vous à votre compte",
+    "sign_up_title": "Créez votre compte",
+    "email": "Courriel",
+    "password": "Mot de passe",
+    "name": "Nom",
+    "sign_in_button": "Se connecter",
+    "sign_up_button": "S'inscrire",
+    "already_have_account": "Vous avez déjà un compte?",
+    "dont_have_account": "Vous n'avez pas de compte?",
+    "sign_in_with_google": "Se connecter avec Google",
+    "sign_up_with_google": "S'inscrire avec Google"
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "welcome": "Bon retour!"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "save": "Sauvegarder",
+    "edit": "Modifier",
+    "delete": "Supprimer"
+  }
+}

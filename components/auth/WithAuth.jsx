@@ -1,8 +1,11 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useAuth } from '../../app/providers/AuthProvider';
+import { useAuth } from '../app/[lang]/providers/AuthProvider';
 import { useEffect } from 'react';
+
+
+// USAGE: Blocks features and page content from users that do not meet requirements
 
 export default function WithAuth({ 
   children, 
@@ -12,7 +15,7 @@ export default function WithAuth({
 }) {
   const { session, isLoading, isAuthenticated } = useAuth();
   const router = useRouter();
-
+  console.log(session);
   // Check if user has required role
   const hasRequiredRole = () => {
     if (!requiredRole) return true;
@@ -30,6 +33,7 @@ export default function WithAuth({
         // Replace the current URL without the parameter (no page reload)
         window.history.replaceState({}, '', currentUrl.pathname + currentUrl.search);
       }
+
 
       // Handle redirect after social login (from sessionStorage)
       const storedRedirect = sessionStorage.getItem('auth_redirect_to');
@@ -51,6 +55,7 @@ export default function WithAuth({
     if (!isLoading && isAuthenticated && requiredRole && !hasRequiredRole()) {
       router.push('/unauthorized');
     }
+
   }, [isLoading, isAuthenticated, router, redirectTo, requiredRole, session]);
 
   // Show loading spinner while checking authentication

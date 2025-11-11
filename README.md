@@ -1,27 +1,39 @@
 # Next.js Starter Kit
 
-A modern, full-stack boilerplate for building web applications with Next.js, MongoDB, DaisyUI, and Better-auth for authentication.
+A modern, full-stack boilerplate for building web applications with Next.js, MongoDB, DaisyUI, Better-auth for authentication, internationalization, and transactional emails.
 
 ## Tech Stack
 
 - **Frontend**: Next.js 15, React 19, TailwindCSS, DaisyUI
 - **Backend**: Next.js API Routes
 - **Database**: MongoDB
-- **Authentication**: Better-auth with social providers (GitHub, Google)
+- **Authentication**: Better-auth with Google social provider
 - **Payments**: Stripe integration
+- **Emails**: Resend for transactional emails
+- **Internationalization**: next-intl for multi-language support
+- **Validation**: Zod schemas for input validation
 - **Styling**: TailwindCSS v4 + DaisyUI
 
 ## Features
 
 - 🔐 **Authentication System**
   - Email/password authentication
-  - Social login (GitHub, Google)
+  - Social login (Google)
   - Protected routes
   - Session management
 - 💳 **Stripe Integration**
   - Payment processing
   - Customer creation on signup
   - Subscription support (configurable)
+- 📧 **Email System**
+  - Resend integration for transactional emails
+  - Email templates and delivery
+- 🌍 **Internationalization**
+  - Multi-language support with next-intl
+  - Locale routing and content translation
+- ✅ **Input Validation**
+  - Zod schemas for type-safe validation
+  - Client and server-side validation
 - 🎨 **UI Components**
   - Pre-built landing page sections
   - Responsive design
@@ -38,9 +50,9 @@ A modern, full-stack boilerplate for building web applications with Next.js, Mon
 
 - Node.js 18+ 
 - MongoDB database
-- GitHub OAuth App (for social login)
 - Google OAuth App (for social login)
 - Stripe account (for payments)
+- Resend account (for transactional emails)
 
 ### Installation
 
@@ -115,26 +127,36 @@ Visit [http://localhost:3000](http://localhost:3000) to see your application.
 3. Set up webhook endpoint pointing to `/api/checkout_sessions`
 4. Copy webhook secret to your `.env.local`
 
+### Resend Setup
+
+1. Create a Resend account at [resend.com](https://resend.com)
+2. Get your API key from the Resend dashboard
+3. Add your API key to your `.env.local` file
+
 ## Project Structure
 
 ```
 next-starter/
 ├── app/                    # Next.js app directory
+│   ├── [lang]/            # Internationalized routes
 │   ├── api/               # API routes
 │   │   ├── auth/         # Better-auth endpoints
+│   │   ├── send/         # Email sending endpoints
 │   │   └── checkout_sessions/ # Stripe webhooks
-│   ├── dashboard/        # Protected dashboard page
-│   ├── sign-in/         # Authentication pages
-│   └── sign-up/
 ├── components/           # Reusable components
 │   ├── auth/            # Authentication components
-│   └── home/            # Landing page sections
+│   ├── dashboard/       # Dashboard components
+│   ├── signin/          # Sign-in components
+│   └── LanguageSwitcher.jsx # Language switching
 ├── lib/                 # Utility libraries
 │   ├── auth.js         # Better-auth configuration
 │   ├── auth-client.js  # Client-side auth
 │   ├── db.js           # MongoDB connection
-│   └── stripe.js       # Stripe configuration
-└── middleware.js       # Route protection
+│   ├── stripe.js       # Stripe configuration
+│   └── validations.js  # Zod validation schemas
+├── messages/            # Internationalization messages
+├── src/                 # Source directory
+└── middleware.js       # Route protection and i18n
 ```
 
 ## Development

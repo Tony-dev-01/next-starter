@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useContext } from 'react';
-import { authClient } from '../../lib/auth-client';
+import { authClient } from '../../../lib/auth-client';
 
 // Create auth context for better performance and state management
 const AuthContext = createContext(null);

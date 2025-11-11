@@ -1,11 +1,15 @@
 import Link from "next/link";
 import ThemeToggleButton from "./ThemeToggleButton";
 import SignButton from "./SignButton";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { getTranslations, getLocale } from 'next-intl/server';
 
 
 
-export default function Header () {
-
+export default async function Header () {
+    const t = await getTranslations('nav');
+    const locale = await getLocale();
+console.log(t('home'))
     return(
         <header className="sticky top-0 z-50 pt-2 bg-base-100 mb-2">
             <div className="container">
@@ -18,7 +22,7 @@ export default function Header () {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        <li><a>Item 1</a></li>
+                        <li><Link href={`/${locale}/`}>{t('home')}</Link></li>
                         <li>
                         <a>Parent</a>
                         <ul className="p-2">
@@ -33,7 +37,7 @@ export default function Header () {
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                    <li><a>Item 1</a></li>
+                    <li><Link href={`/${locale}/`}>{t('home')}</Link></li>
                     <li>
                         <details>
                         <summary>Parent</summary>
@@ -46,10 +50,11 @@ export default function Header () {
                     <li><a>Item 3</a></li>
                     </ul>
                 </div>
-                <div className="navbar-end" >
+                <div className="navbar-end space-x-2" >
                     <Link className="btn btn-primary" href={'/checkout'}>
                     Cart
                     </Link>
+                    <LanguageSwitcher />
                     <ThemeToggleButton />
                     <SignButton />
                 </div>
